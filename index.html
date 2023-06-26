@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Project</title>
+</head>
+
+    <style>
+        div#bookingForm {
+    text-align: center;
+    max-width: 513px;
+    width: 100%;
+    margin: 0 auto;
+}
+       #canvasContainer {
+    /* display: flex; */
+    flex-wrap: wrap;
+    background: url(https://cricket.lancashirecricket.co.uk/media/wfxp50te/2023_int-seating-plan.png?width=484.1197822141561&height=500);
+    height: 501px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+        .canvas {
+          width: 50px;
+          height: 20px;
+          border: 1px solid black;
+          margin: 4px;
+        }
+      </style>
+    <body>
+        <div id="bookingForm">
+        <div class="">
+            <h3>Book your Seat</h3>
+            <p>Click to your wish seat to Book now</p>
+        </div>
+        <div id="canvasContainer"></div>
+        </div>
+      
+        <script>
+          var numCanvases = 95;
+          var container = document.getElementById('canvasContainer');
+          
+          for (var i = 1; i < numCanvases; i++) {
+            var canvas = document.createElement('canvas');
+            canvas.classList.add('canvas', 'div-' + i);
+            canvas.id = 'Seat-L' + i;
+            container.appendChild(canvas);
+      
+            var ctx = canvas.getContext('2d');
+            ctx.fillStyle = 'red';
+            ctx.fillRect(10, 10, 280, 125);
+            ctx.font = 'bold 64px Arial';
+            ctx.fillStyle = 'white';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            var text = "L";
+            ctx.fillText((text + i ).toString(), canvas.width / 2, canvas.height / 2);
+
+            canvas.addEventListener('click', function() {
+                var clickedDivId = this.id;
+                var bookSeat = prompt("Enter your name for booking: " + clickedDivId ) 
+                alert('congratulation!,' + bookSeat + ' Your Seat:  ' + clickedDivId + " - Booked");
+            });
+          }
+      
+        </script>
+      </body>
+</body>
+</html>
